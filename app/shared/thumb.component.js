@@ -11,33 +11,36 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var EventFilterPipe;
+    var ThumbComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            EventFilterPipe = (function () {
-                function EventFilterPipe() {
+            ThumbComponent = (function () {
+                function ThumbComponent() {
                 }
-                EventFilterPipe.prototype.transform = function (value, args) {
-                    var filter = args[0] ? args[0].toLocaleLowerCase() : null;
-                    return filter ? value.filter(function (event) {
-                        return event.name.toLocaleLowerCase().indexOf(filter) !== -1;
-                    }) : value;
+                ThumbComponent.prototype.ngOnChanges = function () {
+                    this.thumbsWidth = this.rating * 86 / 5;
                 };
-                EventFilterPipe = __decorate([
-                    core_1.Pipe({
-                        name: 'eventFilter'
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], ThumbComponent.prototype, "rating", void 0);
+                ThumbComponent = __decorate([
+                    core_1.Component({
+                        selector: 'acw-thumb',
+                        templateUrl: 'app/shared/thumbs.component.html',
+                        styleUrls: ['app/shared/thumbs.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
-                ], EventFilterPipe);
-                return EventFilterPipe;
+                ], ThumbComponent);
+                return ThumbComponent;
             }());
-            exports_1("EventFilterPipe", EventFilterPipe);
+            exports_1("ThumbComponent", ThumbComponent);
         }
     }
 });
 
-//# sourceMappingURL=event-filter.pipe.js.map
+//# sourceMappingURL=thumb.component.js.map
