@@ -20,14 +20,22 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             ThumbComponent = (function () {
                 function ThumbComponent() {
+                    this.ratingClicked = new core_1.EventEmitter();
                 }
                 ThumbComponent.prototype.ngOnChanges = function () {
                     this.thumbsWidth = this.rating * 86 / 5;
+                };
+                ThumbComponent.prototype.onClick = function () {
+                    this.ratingClicked.emit("The rating " + this.rating + " was clicked!");
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Number)
                 ], ThumbComponent.prototype, "rating", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], ThumbComponent.prototype, "ratingClicked", void 0);
                 ThumbComponent = __decorate([
                     core_1.Component({
                         selector: 'acw-thumb',
