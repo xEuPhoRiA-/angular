@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './event.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, event_service_1;
     var EventDetailComponent;
     return {
         setters:[
@@ -19,24 +19,35 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (event_service_1_1) {
+                event_service_1 = event_service_1_1;
             }],
         execute: function() {
             EventDetailComponent = (function () {
-                function EventDetailComponent(_routeParams, _router) {
+                function EventDetailComponent(_eventService, _routeParams, _router) {
+                    this._eventService = _eventService;
                     this._routeParams = _routeParams;
                     this._router = _router;
                     this.pageTitle = 'Event Detail';
                     var id = this._routeParams.get('id');
                     this.pageTitle += ": " + id;
                 }
+                EventDetailComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var id = this._routeParams.get('id');
+                    this._eventService.getEvent(id)
+                        .subscribe(function (event) { return _this.events = event; }, function (error) { return _this.errorMessage = error; });
+                };
                 EventDetailComponent.prototype.onBack = function () {
                     this._router.navigate(['Events']);
                 };
                 EventDetailComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/events/event-detail.component.html'
+                        templateUrl: 'app/events/event-detail.component.html',
+                        providers: [event_service_1.EventService]
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteParams, router_1.Router])
+                    __metadata('design:paramtypes', [event_service_1.EventService, router_1.RouteParams, router_1.Router])
                 ], EventDetailComponent);
                 return EventDetailComponent;
             }());
@@ -44,5 +55,15 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
         }
     }
 });
+// let eventName: string = this.eventDetails[0].name;
+// let eventDate: string = this.event.date;
+// let eventTime: string = this.event.time;
+// let eventCode: string = this.event.name;
+// let eventDesc: Array<string> = this.event.name;
+// let eventLoc: string = this.event.name;
+// let eventDur: string = this.event.name;
+// let eventFee: string = this.event.name;
+// let eventRating: string = this.event.name;
+// let eventUrl: string = this.event.name;
 
 //# sourceMappingURL=event-detail.component.js.map

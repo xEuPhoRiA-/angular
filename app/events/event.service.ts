@@ -4,6 +4,7 @@ import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
 
+
 @Injectable()
 export class EventService {
 
@@ -14,10 +15,18 @@ export class EventService {
     }
 
     getEvents(): Observable<IEvent[]> {
-      return this._http.get(this._eventUrl)
+      let allEvents: Observable<IEvent[]> = this._http.get(this._eventUrl)
           .map((response: Response) => <IEvent[]>response.json())
-          .do(data => console.log("All: " + JSON.stringify(data)))
           .catch(this.handleError);
+          return allEvents;
+    }
+
+    getEvent(id: any) {
+      let singleEvent: Observable<IEvent[]> = this._http.get(this._eventUrl)
+          .map((response:Response) => <IEvent[]>response.json().filter((response) => (response.code == id)))
+          .do((response) => console.log(response))
+          .catch(this.handleError);
+          return singleEvent;
     }
 
     private handleError(error: Response) {

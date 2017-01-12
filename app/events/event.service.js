@@ -30,10 +30,17 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                     this._eventUrl = 'http://angular.dev/data.json';
                 }
                 EventService.prototype.getEvents = function () {
-                    return this._http.get(this._eventUrl)
+                    var allEvents = this._http.get(this._eventUrl)
                         .map(function (response) { return response.json(); })
-                        .do(function (data) { return console.log("All: " + JSON.stringify(data)); })
                         .catch(this.handleError);
+                    return allEvents;
+                };
+                EventService.prototype.getEvent = function (id) {
+                    var singleEvent = this._http.get(this._eventUrl)
+                        .map(function (response) { return response.json().filter(function (response) { return (response.code == id); }); })
+                        .do(function (response) { return console.log(response); })
+                        .catch(this.handleError);
+                    return singleEvent;
                 };
                 EventService.prototype.handleError = function (error) {
                     console.error(error);
