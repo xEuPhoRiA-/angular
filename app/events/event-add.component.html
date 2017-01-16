@@ -1,0 +1,41 @@
+<div class="container">
+  <h1> Add Event</h1>
+  <form [ngFormModel]="form">
+    <div class="form-group">
+      <label>Event Name</label>
+      <input type="text" class="form-control" ngControl='ename' />
+      <div *ngIf='ename.dirty && !ename.valid && !ename.pending'>
+        <div *ngIf='ename.errors.required' class="alert alert-danger"> Event Name required </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Event Code</label>
+      <input type="text" class="form-control" ngControl="ecode" />
+    </div>
+    <div class="form-group">
+      <label>Event Fee</label>
+      <input type="text" class="form-control" ngControl="efee" />
+    </div>
+    <div class="form-group">
+      <label>Event Duration</label>
+      <input type="text" class="form-control" ngControl="edur" />
+    </div>
+    <div class="form-group">
+      <label>Event Date</label>
+      <input type="text" class="form-control" ngControl="edate" />
+    </div>
+    <div class="form-group">
+      <label>Event Time</label>
+      <input type="text" class="form-control" ngControl="etime" />
+    </div>
+    <div class="form-group">
+      <label>Event Location</label>
+      <input type="text" class="form-control" ngControl="eloc" />
+    </div>
+    <div class="form-group">
+      <label>Event Rating</label>
+      <input type="text" class="form-control" ngControl="erate" />
+    </div>
+    <button [disabled]="!form.valid" type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>

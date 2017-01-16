@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', './event.service'], functio
                     var _this = this;
                     var id = this._routeParams.get('id');
                     this._eventService.getEvent(id)
-                        .subscribe(function (event) { return _this.events = event; }, function (error) { return _this.errorMessage = error; });
+                        .subscribe(function (event) { return _this.event = event; }, function (error) { return _this.errorMessage = error; });
                 };
                 EventDetailComponent.prototype.onBack = function () {
                     this._router.navigate(['Events']);
@@ -55,15 +55,5 @@ System.register(['angular2/core', 'angular2/router', './event.service'], functio
         }
     }
 });
-// let eventName: string = this.eventDetails[0].name;
-// let eventDate: string = this.event.date;
-// let eventTime: string = this.event.time;
-// let eventCode: string = this.event.name;
-// let eventDesc: Array<string> = this.event.name;
-// let eventLoc: string = this.event.name;
-// let eventDur: string = this.event.name;
-// let eventFee: string = this.event.name;
-// let eventRating: string = this.event.name;
-// let eventUrl: string = this.event.name;
 
 //# sourceMappingURL=event-detail.component.js.map

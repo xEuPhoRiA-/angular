@@ -14,18 +14,7 @@ import { IEvent } from './event';
 export class EventDetailComponent implements OnInit {
     pageTitle: string = 'Event Detail';
     errorMessage: string;
-    events: IEvent[];
-    eventName: string;
-    eventDate: string;
-    eventTime: string;
-    eventCode: string;
-    eventDesc: Array<string>;
-    eventLoc: string;
-    eventDur: string;
-    eventFee: string;
-    eventRating: string;
-    eventUrl: string;
-
+    event: IEvent[];
 
 
 
@@ -37,7 +26,7 @@ export class EventDetailComponent implements OnInit {
     ngOnInit(): void {
         let id = this._routeParams.get('id');
         this._eventService.getEvent(id)
-            .subscribe(event => this.events = event,
+            .subscribe(event => this.event = event,
             error => this.errorMessage = <any>error);
 
     }
@@ -46,15 +35,3 @@ export class EventDetailComponent implements OnInit {
       this._router.navigate(['Events']);
     }
 }
-
-
-// let eventName: string = this.eventDetails[0].name;
-// let eventDate: string = this.event.date;
-// let eventTime: string = this.event.time;
-// let eventCode: string = this.event.name;
-// let eventDesc: Array<string> = this.event.name;
-// let eventLoc: string = this.event.name;
-// let eventDur: string = this.event.name;
-// let eventFee: string = this.event.name;
-// let eventRating: string = this.event.name;
-// let eventUrl: string = this.event.name;
